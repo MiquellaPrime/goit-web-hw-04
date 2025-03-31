@@ -9,10 +9,10 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from pathlib import Path
 from typing import Any
 
-HTTP_HOST = "127.0.0.1"
+HTTP_HOST = "0.0.0.0"
 HTTP_PORT = 3000
 
-UDP_HOST = "127.0.0.1"
+UDP_HOST = "0.0.0.0"
 UDP_PORT = 5000
 
 
