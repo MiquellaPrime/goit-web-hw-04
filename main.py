@@ -9,10 +9,10 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from pathlib import Path
 from typing import Any
 
-HTTP_HOST = "0.0.0.0"
+HTTP_HOST = "127.0.0.1"
 HTTP_PORT = 3000
 
-UDP_HOST = "0.0.0.0"
+UDP_HOST = "127.0.0.1"
 UDP_PORT = 5000
 
 
@@ -36,14 +36,14 @@ class HttpHandler(BaseHTTPRequestHandler):
         """Обробка GET-запиту. Повертає HTML-сторінку або статичний ресурс, або сторінку 404."""
         pr_url = urllib.parse.urlparse(self.path)
         if pr_url.path == '/':
-            self.send_html_file('index.html')
+            self.send_html_file('templates/index.html')
         elif pr_url.path == '/message':
-            self.send_html_file('message.html')
+            self.send_html_file('templates/message.html')
         else:
             if Path().joinpath(pr_url.path[1:]).exists():
                 self.send_static()
             else:
-                self.send_html_file('error.html', 404)
+                self.send_html_file('templates/error.html', 404)
 
     def send_html_file(self, filename, status=200):
         """Надсилає HTML-файл у відповідь клієнту."""
